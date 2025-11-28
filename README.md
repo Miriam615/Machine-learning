@@ -8,7 +8,7 @@ Machine learning studies and models
   - **Linear regression**:
     - **Ordinary Least Squares (OLS)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Linear%20regression)
     - **Partial Least Squares (PLS)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Linear%20regression)
-    - **Ridge Regression**: 
+    - **Ridge Regression**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Ridge%20Rregression)
   - **Logistic regression**:[View Repository](https://github.com/Miriam615/Machine-learning/blob/main/logistic%20regression)
   - 
 - **Classification**: there's different groups
