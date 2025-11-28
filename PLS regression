@@ -1,1 +1,88 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cross_decomposition import PLSRegression # 
+from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.model_selection import train_test_split, cross_val_predict
+import numpy as np
 
+# Construct file paths for both datasets
+fil_nmr = projdir + doc
+fil_chem = projdir + doc2
+
+# Attempt to load both datasets !!!this is df
+df_nmr = pd.read_csv(fil_nmr, sep=',')
+df_chem = pd.read_csv(fil_chem, sep=',')
+
+X = df_nmr.drop(columns=["Sample", "Color",'White','Red','Rose'])
+y = df_chem.drop(columns=["Sample", "Color",'White','Red','Rose'])
+
+# Separate the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+
+# Ensure y_train is a numpy array
+y_train = np.array(y_train)
+
+# Initialize lists to store results for plotting
+pcs = range(1, 6)  # We'll try from 1 to 5 principal components
+r2_train_list = []
+r2_test_list = []
+mse_train_list = []
+mse_test_list = []
+q2_list = []  # For Q²
+
+#calculate total sum of square 
+ss_tot = np.sum((y_train_arr - y_train_arr.mean()) ** 2)
+
+# Train the PLS model with different numbers of principal components
+for pc in pcs:
+    pls = PLSRegression(n_components=pc)
+    
+    # Calculate Q² using cross-validation
+    y_cv_pred = cross_val_predict(pls, X_train, y_train, cv=5)
+    ss_res = np.sum((y_train_arr - y_cv_pred) ** 2)
+    q2 = 1 - ss_res / ss_tot
+    q2_list.append(q2)
+
+    # Now fit the model on the training data
+    pls.fit(X_train, y_train)
+
+    # Predict on the training set
+    y_pred_train = pls.predict(X_train)
+    r2_train = r2_score(y_train, y_pred_train)
+    mse_train = mean_squared_error(y_train, y_pred_train)
+    r2_train_list.append(r2_train)
+    mse_train_list.append(mse_train)
+
+    # Predict on the testing set
+    y_pred_test = pls.predict(X_test)
+    r2_test = r2_score(y_test, y_pred_test)
+    mse_test = mean_squared_error(y_test, y_pred_test)
+    r2_test_list.append(r2_test)
+    mse_test_list.append(mse_test)
+    print(f"PC={pc}: Q²={q2:.3f}, R²_Test={r2_test:.3f}, MSE_Test={mse_test:.3f}")
+    
+# Create the plots
+fig, axs = plt.subplots(1, 2, figsize=(12, 6))
+
+# Plot R² for training and testing, and Q²
+axs[0].plot(pcs, r2_train_list, 'r-x', label="R² Train")
+axs[0].plot(pcs, r2_test_list, 'b-o', label="R² Test")
+axs[0].plot(pcs, q2_list, 'g-s', label="Q²")  # Adding Q² to the plot
+axs[0].set_xlabel("Principal Components")
+axs[0].set_ylabel("Variance Explained")
+axs[0].set_title("R² and Q²")
+axs[0].legend(loc='upper right', title="Metrics")  # Ensure the legend doesn't duplicate
+axs[0].set_ylim(0, 1)
+
+# Plot MSE for training and testing
+axs[1].plot(pcs, mse_train_list, 'r-x', label="MSE Train")
+axs[1].plot(pcs, mse_test_list, 'b-o', label="MSE Test")
+axs[1].set_xlabel("Principal Components")
+axs[1].set_ylabel("Mean Squared Error")
+axs[1].set_title("MSE")
+axs[1].legend(loc='upper right', title="Metrics")
+axs[1].set_ylim(0, max(max(mse_train_list), max(mse_test_list)) + 0.1)
+
+# Show the plot
+plt.tight_layout()
+plt.show()
