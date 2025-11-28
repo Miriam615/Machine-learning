@@ -5,13 +5,27 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn import datasets
 
-#load dataset
-diabetes = datasets.load_diabetes()
+# dirs
+cwd = os.getcwd()
+print("Current working directory:", cwd)
+cwd = cwd.replace("\\", "/")
+projdir = cwd + '/projects' + PROJ + '/'
+print("Project directory:", projdir)
 
-#train model
+#load data
+fil_nmr = "NMR_mod.csv"
+fil_chem = 'Chem_mod.csv'
+df_nmr = pd.read_csv(fil_nmr, sep=',')
+df_chem = pd.read_csv(fil_chem, sep=',')
+
+#select columns (here i use all numerical columns)
+X = df_nmr.drop(columns=["Sample", "Color",'White','Red','Rose'])
+y = df_chem.drop(columns=["Sample", "Color",'White','Red','Rose'])
+
+#train model (here i use 80% of the data as training set and 20% as test)
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(diabetes.data, diabetes.target, test_size=0.2, random_state=0)
-# There are three steps to model something with sklearn
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
 # Set up the model
 model = LinearRegression()
 # Use fit
@@ -25,3 +39,16 @@ x = np.linspace(0, 330, 100)
 y = x
 plt.plot(x, y)
 plt.show()
+
+#if i want to further use this model to predict
+new_data = [[value1, value2, value3]]   # have to keep these as same order as previous columns
+prediction = model.predict(new_data)
+print(prediction)
+
+#if want to save this model for future use
+import joblib
+joblib.dump(model, "my_model.pkl")
+#and next time use
+loaded_model = joblib.load("my_model.pkl")
+loaded_model.predict(new_data)
+
