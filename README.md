@@ -6,8 +6,8 @@ Machine learning studies and models
 - **Description**: Learn model based on definition/already grouped data
 - **Regression**: there's numerical relation between dependent variable and independent variable
   - **Linear regression**:
-    - **Ordinary Least Squares (OLS)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Linear%20regression)
-    - **Partial Least Squares (PLS)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Linear%20regression)
+    - **Ordinary Least Squares (OLS)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/OLS%20Regression)
+    - **Partial Least Squares (PLS)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/PLS%20regression)
     - **Ridge Regression**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Ridge%20Rregression)
   - **Logistic regression**:[View Repository](https://github.com/Miriam615/Machine-learning/blob/main/logistic%20regression)
   - 
