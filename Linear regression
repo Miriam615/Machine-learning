@@ -13,14 +13,14 @@ projdir = cwd + '/projects' + PROJ + '/'
 print("Project directory:", projdir)
 
 #load data
-fil_nmr = "NMR_mod.csv"
-fil_chem = 'Chem_mod.csv'
-df_nmr = pd.read_csv(fil_nmr, sep=',')
-df_chem = pd.read_csv(fil_chem, sep=',')
+fil_pH = "pH_mod.csv"
+fil_con = 'con_mod.csv'
+df_nmr = pd.read_csv(fil_pH, sep=',')
+df_chem = pd.read_csv(fil_con, sep=',')
 
 #select columns (here i use all numerical columns)
-X = df_nmr.drop(columns=["Sample", "Color",'White','Red','Rose'])
-y = df_chem.drop(columns=["Sample", "Color",'White','Red','Rose'])
+X = df_pH.drop(columns=["Sample", "Color",'White','Red','Rose'])
+y = df_con.drop(columns=["Sample", "Color",'White','Red','Rose'])
 
 #train model (here i use 80% of the data as training set and 20% as test)
 from sklearn.model_selection import train_test_split
