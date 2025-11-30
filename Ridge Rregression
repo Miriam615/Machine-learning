@@ -35,7 +35,7 @@ ridge_regression.fit(X, y)
 
 best_alpha = ridge_regression.best_params_["alpha"]
 best_score = ridge_regression.best_score_
-print("Best alpha:", best_alpha)   #if close to 0, then collinearity problem not serious, OLS good enough
+print("Best alpha:", best_alpha)   #if close to 0, then collinearity problem not serious, OLS good enough, if not, Ridge helps a lot
 print("Best CV MSE:", best_score)
 
 # 4. Plot: alpha vs CV MSE
