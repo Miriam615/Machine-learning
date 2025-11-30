@@ -1,5 +1,5 @@
 # Machine-learning
-Machine learning studies and models
+I am keep updating this repository, for storing basic machine learning codes.
 
 
 ### Supervised learning
