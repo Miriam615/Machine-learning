@@ -20,4 +20,5 @@ How to select model depends on your data type, for supervised study, there are t
 
 
 ## If your y is a class (a group of something) -- Classification
-
+### 1. If you want to use numerical feature to predict the possibility of y belong in a group  -- **Logistic regression**
+  - e.g. use hight and weight to predict sex (180cm, 80kg→80%man)
