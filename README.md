@@ -18,6 +18,8 @@ I am keep updating this repository, for storing basic machine learning codes.
     - **Generalized Linear Models**:
       - **Logistic regression**:[View Repository](https://github.com/Miriam615/Machine-learning/blob/main/logistic%20regression)
       - **Linear Discriminant Analysis (LDA)**
+    - **Non-Parametric Models**:
+      - **k-Nearest Neighbors(KNN)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/K-nearest%20neighbors%20algorithm%20(KNN))
     - 
 - **How do I know which model to choose?**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/how%20to%20select%20model.md)
 
