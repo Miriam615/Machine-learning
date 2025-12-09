@@ -15,8 +15,8 @@ print("Project directory:", projdir)
 #load data
 fil_pH = "pH_mod.csv"
 fil_con = 'con_mod.csv'
-df_nmr = pd.read_csv(fil_pH, sep=',')
-df_chem = pd.read_csv(fil_con, sep=',')
+df_pH = pd.read_csv(fil_pH, sep=',')
+df_con = pd.read_csv(fil_con, sep=',')
 
 #select columns (here i use all numerical columns)
 X = df_pH.drop(columns=["Sample", "Color",'White','Red','Rose'])
