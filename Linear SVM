@@ -1,0 +1,50 @@
+# Import the Libraries
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import svm, datasets
+
+# Import some Data from the iris Data Set
+iris = datasets.load_iris()
+
+# Take only the first two features of Data.
+# To avoid the slicing, Two-Dim Dataset can be used
+
+X = iris.data[:, :2] #取前两列
+y = iris.target
+
+# C is the SVM regularization parameter （C 越大，模型越追求把每个点都分类正确（更可能过拟合）；C 越小，允许更多误分类以获得更平滑的决策面（更强normalization））
+C = 1.0 
+
+# Create an Instance of SVM and Fit out the data.
+# Data is not scaled so as to be able to plot the support vectors
+svc = svm.SVC(kernel ='linear', C = C).fit(X, y)
+
+# create a mesh to plot 为绘制决策区域创造网格（mesh）
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+h = (x_max - x_min) / 100.0
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+         np.arange(y_min, y_max, h))
+
+# Flatten mesh and scale the grid points the same way as training data
+grid = np.c_[xx.ravel(), yy.ravel()]
+grid_scaled = scaler.transform(grid)
+
+# Predict on scaled grid
+Z = svc.predict(grid_scaled)
+Z = Z.reshape(xx.shape)
+
+# Plot
+plt.figure(figsize=(8,6))
+plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired, edgecolors='k')
+# plot support vectors (in original feature space: transform back)
+sv_scaled = svc.support_vectors_
+sv_orig = scaler.inverse_transform(sv_scaled)
+plt.scatter(sv_orig[:,0], sv_orig[:,1], s=100, facecolors='none', edgecolors='k', linewidths=1.5, label='support vectors')
+
+plt.xlabel('Sepal length')
+plt.ylabel('Sepal width')
+plt.title('SVC with linear kernel (scaled data)')
+plt.legend()
+plt.show()
