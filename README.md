@@ -11,7 +11,7 @@ I am keep updating this repository, for storing basic machine learning codes.
     - **Ridge Regression**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Ridge%20Rregression)
   - **Tree base models**:
     - **Decision Tree Regression**
-    - **Random forest**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Random%20forest)
+    - **Random forest regressor**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Random%20forest%20regressor)
     - **Gradient Boosting Regression**
   - **Others**
 
@@ -23,6 +23,7 @@ I am keep updating this repository, for storing basic machine learning codes.
       - **k-Nearest Neighbors(KNN)**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/K-nearest%20neighbors%20algorithm%20(KNN))
     - **Tree-based models**:
       - **Decision tree classifier**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/Decision%20Tree%20Classifier)
+      - **Random forest classifier**:
 - **How do I know which model to choose?**: [View Repository](https://github.com/Miriam615/Machine-learning/blob/main/how%20to%20select%20model.md)
 
 ### Unsupervised learning
